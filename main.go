@@ -1,16 +1,19 @@
 package main
 
 import (
-	"fiberGorm/route"
+	"fiberGorm/models"
 
-	"github.com/gofiber/fiber/v3"
+	"github.com/gofiber/fiber/v2"
 )
 
 func main() {
+	models.ConnectDatabase()
+
 	app := fiber.New()
 
-	// Initial Route
-	route.RouteInit(app)
+	// Initial Route (dinonaktifkan karena agak ribet)
+	// Rename handler into controllers
+	// route.RouteInit(app)
 
-	app.Listen(":3000")
+	app.Listen(":8000")
 }
