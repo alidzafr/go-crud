@@ -74,5 +74,16 @@ func Update(c *fiber.Ctx) error {
 }
 
 func Delete(c *fiber.Ctx) error {
-	return nil
+	var book models.Book
+	id := c.Params("id")
+
+	if models.DB.Delete(&book, id).RowsAffected == 0 {
+		return c.Status(http.StatusNotFound).JSON(fiber.Map{
+			"message": "Tidak dapat menghapus data",
+		})
+	}
+
+	return c.JSON(fiber.Map{
+		"message": "Data berhasil dihapus",
+	})
 }
