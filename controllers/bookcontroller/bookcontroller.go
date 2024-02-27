@@ -64,7 +64,7 @@ func Update(c *fiber.Ctx) error {
 
 	if models.DB.Where("id = ?", id).Updates(&book).RowsAffected == 0 {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-			"message": "Tidak dapat mengupdate data",
+			"message": "Target tidak ada, gagal mengupdate data",
 		})
 	}
 
